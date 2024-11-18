@@ -1,0 +1,40 @@
+name: Build and Push Docker Images
+
+on:
+  push:
+    branches:
+      - main  # Run workflow on pushes to the main branch
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+    # Checkout the code
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    # Log in to Azure
+    - name: Log in to Azure
+      uses: azure/login@v1
+      with:
+        client-id: ${{ secrets.AZURE_CLIENT_ID }}
+        tenant-id: ${{ secrets.AZURE_TENANT_ID }}
+        client-secret: ${{ secrets.AZURE_CLIENT_SECRET }}
+
+    # Log in to ACR
+    - name: Log in to ACR
+      run: |
+        az acr login --name ${{ secrets.ACR_NAME }}
+
+    # Build and push frontend image
+    - name: Build and Push Frontend
+      run: |
+        docker build -t ${{ secrets.ACR_NAME }}.azurecr.io/frontend:latest ./client
+        docker push ${{ secrets.ACR_NAME }}.azurecr.io/frontend:latest
+
+    # Build and push backend image
+    - name: Build and Push Backend
+      run: |
+        docker build -t ${{ secrets.ACR_NAME }}.azurecr.io/backend:latest ./server
+        docker push ${{ secrets.ACR_NAME }}.azurecr.io/backend:latest
