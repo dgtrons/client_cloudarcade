@@ -5,6 +5,10 @@ on:
     branches:
       - main  # Run workflow on pushes to the main branch
 
+permissions:
+  id-token: write   # Add this line to allow GitHub to issue an OIDC token for Azure login
+  contents: read    # This is necessary to check out the repository
+
 jobs:
   build-and-push:
     runs-on: ubuntu-latest
