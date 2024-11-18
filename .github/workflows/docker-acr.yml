@@ -39,7 +39,7 @@ jobs:
     # Build and push frontend image
     - name: Build and Push Frontend
       run: |
-        docker build -t ${{ secrets.ACR_NAME }}.azurecr.io/frontend:latest ./client
+        docker build -t ${{ secrets.ACR_NAME }}.azurecr.io/frontend:latest ./
         docker push ${{ secrets.ACR_NAME }}.azurecr.io/frontend:latest
 
     # Build and push backend image
