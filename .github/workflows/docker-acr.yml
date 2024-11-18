@@ -43,7 +43,7 @@ jobs:
         docker push ${{ secrets.ACR_NAME }}.azurecr.io/frontend:latest
 
     # Build and push backend image
-    - name: Build and Push Backend
-      run: |
-        docker build -t ${{ secrets.ACR_NAME }}.azurecr.io/backend:latest ./server
-        docker push ${{ secrets.ACR_NAME }}.azurecr.io/backend:latest
+    #- name: Build and Push Backend
+    #  run: |
+    #    docker build -t ${{ secrets.ACR_NAME }}.azurecr.io/backend:latest ./server
+    #    docker push ${{ secrets.ACR_NAME }}.azurecr.io/backend:latest
