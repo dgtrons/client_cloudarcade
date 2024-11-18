@@ -32,6 +32,10 @@ jobs:
       run: |
         az acr login --name ${{ secrets.ACR_NAME }}
 
+    # check the contents of the repository
+    - name: List Repository Contents
+      run: ls -R
+
     # Build and push frontend image
     - name: Build and Push Frontend
       run: |
