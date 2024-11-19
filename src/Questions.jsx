@@ -10,7 +10,7 @@ const Questions = () => {
 
   useEffect(() => {
     // Fetch questions from the FastAPI backend
-    fetch('servercloudarcade-hmbcfhezdcfebgcp.eastus2-01.azurewebsites.net', { method: 'GET' }) // Replace with your FastAPI endpoint
+    fetch('https://servercloudarcade-hmbcfhezdcfebgcp.eastus2-01.azurewebsites.net', { method: 'GET' }) // Replace with your FastAPI endpoint
       .then((response) => {
         if (!response.ok) {
           throw new Error('Failed to fetch questions');
